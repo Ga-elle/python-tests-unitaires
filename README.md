@@ -24,3 +24,21 @@ Le script world.py affiche 2 graphiques :
 python -m doctest -v program/world.py
 ```
 
+### Librairies de tests 
+
+ + Unittest
+ + Pytest
+
+Dans ce projet, nous utilisons _Pytest_ .
+
+Pour lancer pytest : 
+```
+pytest
+```
+Ceci va lancer tous les tests de tous les fichiers qui commencent par `test_` ou qui finissent par `_test`.
+
+Pour voir les `print()` lors du lancement des tests, il faut utiliser l'option `-s` comme suit : `pytest -s`
+
+A retenir :
+ + pour tester des valeurs : `assert`
+ + pour tester des exceptions : `raises(SomeException)`. Attention, ne pas oublier d'importer le module pytest dans le fichier test.py
