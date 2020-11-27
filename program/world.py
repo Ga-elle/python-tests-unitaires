@@ -11,7 +11,11 @@ import matplotlib.pyplot as plt
 
 
 class Agent:
-
+    """
+    >>> agent = Agent(30)
+    >>> agent.position
+    30
+    """
     def __init__(self, position, **properties):
         self.position = position
         for property_name, property_value in properties.items():
