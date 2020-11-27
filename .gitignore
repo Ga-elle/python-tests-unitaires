@@ -1,0 +1,6 @@
+env
+__pycache__
+*.pyc
+agents-100k.json
+program/agent-100k.json
+.cache
