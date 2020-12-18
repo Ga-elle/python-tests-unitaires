@@ -59,7 +59,7 @@ p = tmpdir.mkdir("program").join("agents.json")
 Cette fonction va créer un dossier program et un fichier agents.json à l'intérieur.
 
 
-#### Améliorer la couverture des tests
+#### Setup avant et après les tests unitiares
 
 Pytest nous permet d'exécuter des instructions avant ou après chaque test unitaire à l'aide de `setup` et `teardown`.
  + la méthode `setup_fonction()` est déclenchée avant votre test unitaire
@@ -68,3 +68,11 @@ Il existe plusieurs niveaux:
  + déclenchement avant chaque test unitaire : `setup_function(function)`, `setup_method(self, method)`
  + déclenchement à la création d'une classe : `setup_class(cls)`
  + déclenchement à l'import du module pytest : `setup_module(module)`
+
+#### Couverture des tests
+
+```
+pip install coverage
+pip install pytest-cov
+pytest --cov=program --cov-report html test_*.py
+```
