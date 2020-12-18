@@ -11,10 +11,10 @@ python program/download_agents.py > program/agent-100k.json
 python program/world.py program/agent-100k.json
 ```
 
-Le script world.py affiche 2 graphiques : 
+Le script world.py affiche 2 graphiques :
  + l'agréability moyenne en fonction de la densité de la population
  + les revenus en fonction de l'âge
- 
+
 
 ## Tester son projet
 
@@ -24,14 +24,14 @@ Le script world.py affiche 2 graphiques :
 python -m doctest -v program/world.py
 ```
 
-### Librairies de tests 
+### Librairies de tests
 
  + Unittest
  + Pytest
 
 Dans ce projet, nous utilisons _Pytest_ .
 
-Pour lancer pytest : 
+Pour lancer pytest :
 ```
 pytest
 ```
@@ -42,3 +42,18 @@ Pour voir les `print()` lors du lancement des tests, il faut utiliser l'option `
 A retenir :
  + pour tester des valeurs : `assert`
  + pour tester des exceptions : `raises(SomeException)`. Attention, ne pas oublier d'importer le module pytest dans le fichier test.py
+ + bonne pratique : organiser ses tests en classes. Pytest détecte les classes qu'il doit exécuter en cherchant celles qui commencent par `Test`. Il faut donc commencer toutes les classes de nos tests avec ce mot.
+
+#### Utiliser des mocks
+
+Utiliser le helper `monkeypatch` dans Pytest ((documentation)[https://docs.pytest.org/en/latest/monkeypatch.html])
+
+#### Imiter l'écriture dans un fichier
+
+Utiliser le helper `tmpdir`dans Pytest : il permet de créer un nouveau fichier dans un répertoire temporaire. A la fin du test, Pytest le supprime pour nous.
+
+```
+p = tmpdir.mkdir("program").join("agents.json")
+```
+
+Cette fonction va créer un dossier program et un fichier agents.json à l'intérieur.
