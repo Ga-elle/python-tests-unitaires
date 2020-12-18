@@ -58,8 +58,8 @@ class Zone:
     MAX_LONGITUDE_DEGREES = 180
     MIN_LATITUDE_DEGREES = -90
     MAX_LATITUDE_DEGREES = 90
-    WIDTH_DEGREES = 1 
-    HEIGHT_DEGREES = 1 
+    WIDTH_DEGREES = 1
+    HEIGHT_DEGREES = 1
 
     EARTH_RADIUS_KILOMETERS = 6371
 
@@ -205,6 +205,27 @@ class IncomeGraph(BaseGraph):
         return x_values, y_values
 
 
+class AgreeablenessPerAgeGraph(BaseGraph):
+
+    def __init__(self):
+        super(AgreeablenessPerAgeGraph, self).__init__()
+        self.title = "Nice people are young"
+        self.x_label = "age"
+        self.y_label = "agreeableness"
+
+    def xy_values(self, zones):
+        agreableness_by_age = defaultdict(float)
+        population_by_age = defaultdict(int)
+        for zone in zones:
+            for inhabitant in zone.inhabitants:
+                agreableness_by_age[inhabitant.age] += inhabitant.agreeableness
+                population_by_age[inhabitant.age] += 1
+
+        x_values = range(0, 100)
+        y_values = [agreableness_by_age[age] / (population_by_age[age] or 1) for age in range(0, 100)]
+        return x_values, y_values
+
+
 def main():
     parser = argparse.ArgumentParser("Display population stats")
     parser.add_argument("src", help="Path to source json agents file")
@@ -223,6 +244,9 @@ def main():
 
     income_graph = IncomeGraph()
     income_graph.show(Zone.ZONES)
+
+    agreeableness_per_age_graph = AgreeablenessPerAgeGraph()
+    agreeableness_per_age_graph.show(Zone.ZONES)
 
 if __name__ == "__main__":
     main()
