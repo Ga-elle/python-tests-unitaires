@@ -46,7 +46,7 @@ A retenir :
 
 #### Utiliser des mocks
 
-Utiliser le helper `monkeypatch` dans Pytest ((documentation)[https://docs.pytest.org/en/latest/monkeypatch.html])
+Utiliser le helper `monkeypatch` dans Pytest ( (documentation)[https://docs.pytest.org/en/latest/monkeypatch.html] )
 
 #### Imiter l'écriture dans un fichier
 
